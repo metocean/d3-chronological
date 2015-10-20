@@ -1,0 +1,34 @@
+{
+  "name": "d3-chronological",
+  "version": "0.0.1",
+  "description": "d3 components using proper timezone information",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build-standalone && npm run build-examples",
+    "build-standalone": "./node_modules/.bin/browserify ./index.js | ./node_modules/.bin/uglifyjs -mc > ./dist/d3-chronological.min.js",
+    "build-examples": "./node_modules/.bin/browserify ./examples/index.js -o ./examples/bundle.js",
+
+    "watch": "npm run watch-examples",
+    "watch-examples": "./node_modules/.bin/watchify ./examples/index.js -o ./examples/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metocean/d3-chronological.git"
+  },
+  "author": "Thomas Coats",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/metocean/d3-chronological/issues"
+  },
+  "homepage": "https://github.com/metocean/d3-chronological#readme",
+  "dependencies": {
+    "chronological": "1.3.1",
+    "moment": "2.10.6",
+    "moment-timezone": "0.4.1"
+  },
+  "devDependencies": {
+    "browserify": "11.2.0",
+    "uglifyjs": "2.4.10",
+    "watchify": "3.4.0"
+  }
+}
