@@ -50,12 +50,14 @@ formats =
   y: (d) -> d.format 'D MMM'
 
 chrono_scale = (linear, tz) ->
+  tz ?= 'UTC'
+
   scale = (x) -> linear ms x
   scale.invert = (x) -> linear.invert x
 
   scale.domain = (x) ->
     if !arguments.length
-      return linear.domain().map (t) -> moment t
+      return linear.domain().map (t) -> moment(t).tz(tz)
     linear.domain x.map ms
     scale
 
@@ -88,4 +90,5 @@ chrono_scale = (linear, tz) ->
   scale.copy = -> chrono_scale linear.copy(), tz
   d3.rebind scale, linear, 'range', 'rangeRound', 'interpolate', 'clamp'
 
-d3.time.scale.chrono = (tz) -> chrono_scale d3.scale.linear(), tz
+d3.chrono = {} if !d3.chrono?
+d3.chrono.scale = (tz) -> chrono_scale d3.scale.linear(), tz

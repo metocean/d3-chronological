@@ -28,7 +28,7 @@ svg1 = d3.select('body').append('svg').attr('width', width + margin.left + margi
 
 svg1.append('g').attr('class', 'x axis').call(d3.svg.axis().scale(x1).orient('bottom'));
 
-x2 = d3.time.scale.chrono('Pacific/Auckland').domain(domain).nice(moment().tz('Pacific/Auckland').startOf('w').every(1, 'w')).range([0, width]);
+x2 = d3.chrono.scale('Pacific/Auckland').domain(domain).nice(moment().tz('Pacific/Auckland').startOf('w').every(1, 'w')).range([0, width]);
 
 svg2 = d3.select('body').append('svg').attr('width', width + margin.left + margin.right).attr('height', height + margin.top + margin.bottom).append('g').attr('transform', "translate(" + margin.left + "," + margin.top + ")");
 

@@ -96,6 +96,9 @@ formats = {
 
 chrono_scale = function(linear, tz) {
   var scale;
+  if (tz == null) {
+    tz = 'UTC';
+  }
   scale = function(x) {
     return linear(ms(x));
   };
@@ -105,7 +108,7 @@ chrono_scale = function(linear, tz) {
   scale.domain = function(x) {
     if (!arguments.length) {
       return linear.domain().map(function(t) {
-        return moment(t);
+        return moment(t).tz(tz);
       });
     }
     linear.domain(x.map(ms));
@@ -150,6 +153,10 @@ chrono_scale = function(linear, tz) {
   return d3.rebind(scale, linear, 'range', 'rangeRound', 'interpolate', 'clamp');
 };
 
-d3.time.scale.chrono = function(tz) {
+if (d3.chrono == null) {
+  d3.chrono = {};
+}
+
+d3.chrono.scale = function(tz) {
   return chrono_scale(d3.scale.linear(), tz);
 };
