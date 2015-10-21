@@ -4535,7 +4535,6 @@ chrono_scale = function(linear, tz) {
     diff = domain[1].diff(domain[0], unit);
     diff /= count;
     diff = selectnice(diff, unit);
-    console.log("" + diff + unit);
     every = anchor.every(diff, unit);
     startindex = Math.ceil(every.count(domain[0]));
     endindex = Math.floor(every.count(domain[1]));
