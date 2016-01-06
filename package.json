@@ -1,6 +1,6 @@
 {
   "name": "d3-chronological",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "d3 components using proper timezone information",
   "main": "index.js",
   "scripts": {
